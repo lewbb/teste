@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hype Style Store – Protótipo</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Pirata+One&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#0b0d12;--ink:#f4f4f2;--mute:#9a9ea8;--card:#14171e;--line:#2a2e38;--hi:#ffffff;--blue:#2f46ff;
+--mk:"Permanent Marker","Impact",sans-serif;--bl:"Pirata One","Georgia",serif;--tx:"Archivo","Helvetica Neue",Arial,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:70px;scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--tx);line-height:1.5}
+a{color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:2px solid var(--ink)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-family:var(--mk);font-size:22px;text-decoration:none}
+nav{display:flex;gap:18px;align-items:center}
+nav a{text-decoration:none;font-weight:600;font-size:14px}
+nav a.hide{display:none}
+@media(min-width:700px){nav a.hide{display:inline}}
+.bag{background:var(--ink);color:var(--bg);border:0;font:800 14px var(--tx);padding:9px 14px;cursor:pointer;transform:rotate(-2deg)}
+.bag:focus-visible,.btn:focus-visible,.chip:focus-visible,.add:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.hero{padding:56px 0 40px;text-align:center;position:relative;overflow:hidden}
+.hero .alien{font-size:56px;display:block;animation:pop .7s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes pop{from{transform:scale(0) rotate(-40deg)}to{transform:none}}
+.hero h1{font-family:var(--mk);font-weight:400;font-size:clamp(64px,19vw,190px);line-height:.85;margin:10px 0 0;letter-spacing:-2px;text-transform:uppercase;
+color:var(--ink);text-shadow:5px 5px 0 #3a3e49,9px 9px 0 #1c1f27;transform:rotate(-3deg)}
+.hero h1 span{display:block;margin-left:8%}
+.hero p{font-family:var(--bl);font-size:clamp(22px,4vw,34px);margin:34px 0 22px;color:var(--mute)}
+.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;font-weight:800;padding:14px 24px;border:2px solid var(--ink);cursor:pointer;font-size:15px;background:transparent;color:var(--ink);font-family:var(--tx)}
+.btn.fill{background:var(--ink);color:var(--bg)}
+.btn.blue{background:var(--blue);border-color:var(--blue);color:#fff}
+.tape{background:var(--ink);color:var(--bg);overflow:hidden;white-space:nowrap;transform:rotate(-1.2deg);margin:18px -10px;border-block:2px solid var(--bg)}
+.tape div{display:inline-block;padding:10px 0;font-family:var(--mk);font-size:20px;animation:run 22s linear infinite}
+@keyframes run{to{transform:translateX(-50%)}}
+section{padding:56px 0}
+h2{font-family:var(--bl);font-weight:400;font-size:clamp(40px,8vw,68px);line-height:1;margin:0 0 8px}
+.sub{color:var(--mute);margin:0 0 26px;max-width:52ch}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.chip{background:transparent;color:var(--ink);border:2px solid var(--line);padding:8px 16px;font:600 14px var(--tx);cursor:pointer}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(min-width:800px){.grid{grid-template-columns:repeat(4,1fr)}}
+.p{background:var(--card);border:2px solid var(--line);display:flex;flex-direction:column}
+.p:hover{border-color:var(--ink)}
+.ph{aspect-ratio:4/5;display:grid;place-items:center;font-family:var(--mk);font-size:clamp(26px,5vw,40px);text-align:center;line-height:1;padding:10px;position:relative;overflow:hidden}
+.ph small{position:absolute;left:8px;bottom:8px;font:600 11px var(--tx);color:var(--mute)}
+.t1{background:#e9e9e6;color:#0b0d12}.t2{background:var(--blue);color:#fff}.t3{background:#05060a;color:#fff;background-image:repeating-linear-gradient(45deg,#0d0f15 0 12px,#05060a 12px 24px)}.t4{background:#6c7280;color:#fff}
+.pi{padding:12px;display:flex;flex-direction:column;gap:4px;flex:1}
+.pi b{font-size:15px}.pi span{color:var(--mute);font-size:13px}
+.pr{font-weight:800;font-size:18px;margin-top:auto;padding-top:8px}
+.add{margin-top:8px;background:var(--ink);color:var(--bg);border:0;font:800 14px var(--tx);padding:11px;cursor:pointer}
+.cred{background:var(--ink);color:var(--bg)}
+.cred h2{color:var(--bg)}.cred .sub{color:#4a4e58}
+.cols{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:800px){.cols{grid-template-columns:repeat(3,1fr)}}
+.box{border:2px solid var(--bg);padding:18px}
+.box b{font-family:var(--bl);font-size:28px;font-weight:400;display:block}
+.cred .btn{border-color:var(--bg);color:var(--bg)}
+.cred .btn.fill{background:var(--bg);color:var(--ink)}
+.info{display:grid;gap:26px}
+@media(min-width:800px){.info{grid-template-columns:1fr 1fr}}
+.info h3{font-family:var(--mk);font-weight:400;font-size:26px;margin:0 0 8px}
+.info p{margin:0 0 6px}
+footer{border-top:2px solid var(--ink);padding:30px 0 40px;text-align:center;color:var(--mute);font-size:13px}
+footer .logo{display:block;color:var(--ink);font-size:30px;margin-bottom:6px}
+.note{background:#1d2030;border:1px dashed var(--mute);padding:10px 14px;font-size:13px;color:var(--mute);margin-top:30px}
+#drawer{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;z-index:40;justify-content:flex-end}
+#drawer.on{display:flex}
+#panel{background:var(--bg);border-left:2px solid var(--ink);width:min(380px,100%);height:100%;padding:20px;padding-top:calc(20px + env(safe-area-inset-top,0px));display:flex;flex-direction:column;gap:12px;overflow:auto}
+#panel h3{font-family:var(--bl);font-weight:400;font-size:38px;margin:0}
+.it{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding:8px 0;font-size:14px}
+.it button{background:none;border:0;color:var(--mute);cursor:pointer;font-size:16px}
+@media(prefers-reduced-motion:reduce){.tape div,.hero .alien{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="logo" href="#topo">Hype Style 👽</a>
+  <nav><a class="hide" href="#loja">Loja</a><a class="hide" href="#crediario">Crediário</a><a class="hide" href="#visite">Visite</a>
+  <button class="bag" id="open" aria-label="Abrir sacola">Sacola (<span id="n">0</span>)</button></nav>
+</div></header>
+
+<main id="topo">
+<div class="wrap hero">
+  <span class="alien" aria-hidden="true">👽</span>
+  <h1>Hype<span>Style</span></h1>
+  <p>Streetwear, tênis e cultura de rua em Castro.</p>
+  <div class="btns"><a class="btn fill" href="#loja">Ver a loja</a><a class="btn" href="#crediario">Comprar no crediário</a></div>
+</div>
+
+<div class="tape" aria-hidden="true"><div>KOST ✦ PIXA-IN ✦ OS NOSSOS QIX ✦ FUNK RAP TRAP ✦ ENVIO PARA TODO BRASIL ✦ KOST ✦ PIXA-IN ✦ OS NOSSOS QIX ✦ FUNK RAP TRAP ✦ ENVIO PARA TODO BRASIL ✦ </div></div>
+
+<section id="loja"><div class="wrap">
+  <h2>Drops da semana</h2>
+  <p class="sub">Escolha as peças, monte a sacola e finalize direto no WhatsApp da loja.</p>
+  <div class="chips" id="chips" role="group" aria-label="Filtrar por categoria"></div>
+  <div class="grid" id="grid"></div>
+  <div class="note">Protótipo: nomes, preços e imagens são exemplos. No site final entram as fotos reais da loja e o catálogo completo.</div>
+</div></section>
+
+<section class="cred" id="crediario"><div class="wrap">
+  <h2>Crediário Hype</h2>
+  <p class="sub">A loja já vende no crediário e aceita cartão. O site deixa isso claro e leva o cliente para o atendimento.</p>
+  <div class="cols">
+    <div class="box"><b>Escolha</b>Monte a sacola com as peças que quiser.</div>
+    <div class="box"><b>Chame no Zap</b>A equipe confirma estoque, tamanho e as condições.</div>
+    <div class="box"><b>Receba ou retire</b>Envio por Correio ou Motoboy, ou retirada na loja.</div>
+  </div>
+  <p style="margin-top:22px"><a class="btn fill" href="#" data-wa="Oi! Quero saber como funciona o crediário da Hype Style.">Falar sobre crediário</a></p>
+</div></section>
+
+<section id="visite"><div class="wrap info">
+  <div>
+    <h2>Passa aqui</h2>
+    <p class="sub">Loja física no centro de Castro. Vem provar as peças.</p>
+    <h3>Endereço</h3><p>Dr. Jorge Xavier da Silva, 32 – Castro, PR</p>
+    <h3>Horários</h3><p>Segunda a sexta: 9h às 18h</p><p>Sábado: 9h às 16h</p>
+  </div>
+  <div>
+    <h3>Entrega</h3><p>Enviamos via Correio e Motoboy.</p>
+    <h3>Clientes</h3><p>Os looks dos clientes viram galeria no site, direto do Instagram @hypestyle_stores.</p>
+    <p style="margin-top:20px"><a class="btn blue" href="#" data-wa="Oi! Vim pelo site da Hype Style.">Chamar no WhatsApp</a></p>
+    <p><a class="btn" href="https://instagram.com/hypestyle_stores" target="_blank" rel="noopener">Instagram</a></p>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap"><span class="logo">Hype Style 👽</span>Protótipo de proposta · Castro, Paraná</div></footer>
+
+<div id="drawer" role="dialog" aria-modal="true" aria-label="Sacola"><div id="panel">
+  <h3>Sua sacola</h3><div id="items"></div>
+  <div class="it"><b>Total</b><b id="tot">R$ 0,00</b></div>
+  <a class="btn blue" id="send" href="#">Finalizar no WhatsApp</a>
+  <button class="btn" id="close">Continuar vendo</button>
+</div></div>
+
+<script>
+var WA="5542999999999"; // trocar pelo número real da loja
+var P=[
+ {n:"Camiseta Kost Oversized",c:"Camisetas",p:129.9,t:"t3",l:"KOST"},
+ {n:"Camiseta Azul Basic",c:"Camisetas",p:99.9,t:"t2",l:"BLUE TEE"},
+ {n:"Moletom Funk Rap Trap",c:"Moletons",p:259.9,t:"t2",l:"FUNK RAP TRAP"},
+ {n:"Moletom Preto Chronic",c:"Moletons",p:279.9,t:"t3",l:"CHRONIC"},
+ {n:"Calça Jeans Baggy",c:"Calças",p:239.9,t:"t4",l:"BAGGY"},
+ {n:"Bermuda Jeans Larga",c:"Calças",p:179.9,t:"t1",l:"JNCO"},
+ {n:"Tênis Kost Preto",c:"Tênis",p:349.9,t:"t3",l:"TÊNIS KOST"},
+ {n:"Kit Look Completo",c:"Kits",p:489.9,t:"t1",l:"KIT HYPE"}
+];
+var cats=["Tudo"].concat(P.map(function(x){return x.c}).filter(function(v,i,a){return a.indexOf(v)===i}));
+var cart=[],cur="Tudo";
+function brl(v){return "R$ "+v.toFixed(2).replace(".",",")}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function chips(){document.getElementById("chips").innerHTML=cats.map(function(c){return '<button class="chip" aria-pressed="'+(c===cur)+'" data-c="'+c+'">'+c+'</button>'}).join("")}
+function grid(){document.getElementById("grid").innerHTML=P.map(function(x,i){return {x:x,i:i}}).filter(function(o){return cur==="Tudo"||o.x.c===cur}).map(function(o){var x=o.x;
+ return '<article class="p"><div class="ph '+x.t+'">'+x.l+'<small>foto do produto</small></div><div class="pi"><b>'+x.n+'</b><span>'+x.c+' · P ao GG</span><div class="pr">'+brl(x.p)+'</div><button class="add" data-i="'+o.i+'">Adicionar</button></div></article>'}).join("")}
+function draw(){document.getElementById("n").textContent=cart.length;
+ var t=cart.reduce(function(s,i){return s+P[i].p},0);document.getElementById("tot").textContent=brl(t);
+ document.getElementById("items").innerHTML=cart.length?cart.map(function(i,k){return '<div class="it"><span>'+esc(P[i].n)+'</span><span>'+brl(P[i].p)+' <button data-r="'+k+'" aria-label="Remover">✕</button></span></div>'}).join(""):'<p class="sub">Sacola vazia. Adicione uma peça na loja.</p>';
+ var msg="Oi! Quero fazer um pedido:%0A"+cart.map(function(i){return "- "+P[i].n+" ("+brl(P[i].p)+")"}).join("%0A")+"%0ATotal: "+brl(t);
+ document.getElementById("send").href=cart.length?"https://wa.me/"+WA+"?text="+msg:"#loja"}
+document.addEventListener("click",function(e){var t=e.target,d=t.closest("[data-c],[data-i],[data-r],[data-wa]");
+ if(t.id==="open"||t.closest("#open")){document.getElementById("drawer").classList.add("on")}
+ if(t.id==="close"||t.id==="drawer"){document.getElementById("drawer").classList.remove("on")}
+ if(!d)return;
+ if(d.dataset.c){cur=d.dataset.c;chips();grid()}
+ if(d.dataset.i){cart.push(+d.dataset.i);draw();d.textContent="Adicionado ✓";setTimeout(function(){d.textContent="Adicionar"},900)}
+ if(d.dataset.r){cart.splice(+d.dataset.r,1);draw()}
+ if(d.dataset.wa){e.preventDefault();window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(d.dataset.wa),"_blank")}
+});
+chips();grid();draw();
+</script>
+</body>
+</html>
